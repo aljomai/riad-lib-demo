@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <bj-form-search (formChange)="search($event)"></bj-form-search>
+
+  <div class="form-row mt-3">
+    <ng-container *ngFor="let icon of (farRegular | async)">
+      <div class="col-md-3" *ngIf="icon.iconName.length < 21">
+        <fa-icon [icon]="[icon.prefix, icon.iconName]"></fa-icon>
+        <button
+          type="button"
+          (click)="clicked(icon)"
+          class="btn btn-link"
+          style="cursor: pointer"
+        >
+          {{ icon.iconName }}
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+      {{ closeBtnName }}
+    </button>
+  </div> -->
+</div>
